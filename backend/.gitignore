@@ -1,0 +1,6 @@
+# dependencies
+/node_modules
+
+# environment variables
+gcs-key.jason
+.env
