@@ -4,3 +4,4 @@
 # environment variables
 gcs-key.jason
 .env
+gcs-key.json
