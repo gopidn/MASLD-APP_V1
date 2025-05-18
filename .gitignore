@@ -2,10 +2,24 @@
 node_modules/
 dist/
 build/
-.env
 .DS_Store
 *.log
 
 # Ignore frontend and backend dependencies separately
 frontend/node_modules/
 backend/node_modules/
+
+# Build outputs
+frontend/build/
+backend/build/
+backend/.env
+frontend/.env
+.env
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE folders
+.vscode/
+.idea/

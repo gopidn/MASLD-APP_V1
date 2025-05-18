@@ -1,38 +1,199 @@
-.App {
-  text-align: center;
+@media (max-width: 640px) {
+  .grid-two {
+    grid-template-columns: 1fr;     /* single column */
+  }
 }
 
-.App-logo {
-  height: 40vmin;
+/* --- simple layout helpers ---------------------------------- */
+
+.grid-two {                     /* ➊ NEW */
+  display: grid;                /*   two-column layout            */
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;   /* horizontal space between columns */
+  row-gap: 20px;      /* vertical space between rows */
+  }
+
+.form-section   { 
+    margin-top: 12px; 
+    padding: 32px; 
+    border-top: 1px solid #ddd; 
+    background: var(--brand-light);
+    border-radius: 12px;
+  }
+
+.form-section:first-of-type { 
+  border-top: none; 
+  padding-top: 24px; 
+  }
+
+.form-title     { 
+    margin: 0 0 16px 0; 
+    font-size: 1.25rem; 
+    font-weight: 600; 
+  }
+
+.grid-two label { 
+  margin-bottom: 4px;
+  font-weight: 500; 
+  }
+
+.grid-two div {
+    display: flex;
+    flex-direction: column;
+  }
+
+.grid-two input,
+.grid-two select { 
+  width: 100%; 
+  padding: 6px 8px; 
+}
+
+/* App.css – add near top */
+:root {
+  --brand: #0c7bcf;         /* deep medical blue */
+  --brand-light: #e6f4ff;
+  --danger: #d0384a;
+  --text: #333;
+  --bg: #f4f8fb;
+}
+
+input, select {
+  box-sizing: border-box;
+}
+
+body { 
+  margin: 0; 
+  background: var(--bg); 
+  font-family: 'Inter', sans-serif; 
+  color: var(--text); 
+}
+
+.form-wrapper {
+  max-width: 880px;
+  margin: 48px auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 40px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+label.required::after { 
+  content:"*"; 
+  color: var(--danger); 
+  margin-left: 4px; 
+}
+
+.help-icon { 
+  margin-left: 6px; 
+  color: var(--brand); 
+  cursor: help; 
+}
+
+/*
+.help-icon:hover {
+  font-weight: 600;
+  color: #0057a7; 
+}
+*/
+
+.custom-tooltip {
+  position: absolute;
+  left: 120%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: #0c7bcf;         /* Deep blue or any color you want */
+  color: #fff;                 /* White text */
+  font-size: 0.75rem;          /* Larger font */
+  padding: 8px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
   pointer-events: none;
+  opacity: 0.97;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.dropzone {
+  border: 2px dashed var(--brand);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: background .2s;
+}
+.dropzone.dragactive { 
+  background: var(--brand-light); 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+button.primary {
+  background: var(--brand);
+  color:#fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-weight: 600;
+  transition: background .2s;
+  margin-top: 12px; 
+}
+button.primary:hover   { 
+  background: #034374; 
+}
+button.primary:disabled { 
+  background: #9ec9e8; 
+  cursor:not-allowed; 
 }
 
-.App-link {
-  color: #61dafb;
+button.secondary {
+  background: var(--brand);
+  color:#fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 300;
+  transition: background .2s;
+}
+button.secondary:hover   { 
+  background: #034374; 
+}
+button.secondary:disabled { 
+  background: #9ec9e8; 
+  cursor:not-allowed; 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.page-heading {
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+  gap:12px; 
+  margin-top:32px; 
+  color:var(--brand);
+}
+
+.brand-icon { 
+  font-size:2.2rem; 
+}
+
+.error-banner {
+  background: #ffe8e8; 
+  color: var(--danger);
+  padding: 12px 16px; 
+  border-radius: 8px; 
+  margin-bottom: 24px;
+}
+
+.remove-report-btn {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  font-weight: bold;
+  font-size: 1.3em;
+  cursor: pointer;
+  margin-left: 4px;
+  padding: 0 0px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: background 0.15s;
+}
+.remove-report-btn:hover,
+.remove-report-btn:focus {
+  background: #ffe8e8;
 }

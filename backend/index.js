@@ -68,7 +68,7 @@ app.post("/submit", async (req, res) => {
     res.status(200).send("Patient data stored successfully.");
   } catch (err) {
     console.error("Error storing data:", err);
-    res.status(500).send("Failed to insert paitent data.");
+    res.status(500).send("Failed to insert patient data.");
   }
 });
 
