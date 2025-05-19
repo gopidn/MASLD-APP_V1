@@ -323,18 +323,6 @@ export default function App() {
             </div>
           </React.Fragment>
         ))}
-          <button className="secondary" 
-            type="button"
-            
-            onClick={() =>
-              setFormData(prev => ({
-                ...prev,
-                report_files: [...prev.report_files, { file: null, type: "" }],
-              }))
-            }
-          >
-            Fill form from report
-          </button>
       </FormSection>
 
           <FormSection title="Personal Details">
