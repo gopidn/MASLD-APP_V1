@@ -4,7 +4,7 @@ const pool = require("./db");
 require("dotenv").config();
 
 const app = express();
-const PORT = 5050;
+const PORT = process.env.PORT || 5050;
 
 function sanitisePatient(data) {
   // 1. clone so we don’t mutate req.body directly
