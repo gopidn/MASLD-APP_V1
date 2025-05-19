@@ -156,7 +156,7 @@ export default function App() {
           });
           fileData.append("types", JSON.stringify(types));
     
-          const uploadRes = await fetch('${process.env.REACT_APP_API_URL}/upload-multiple', {
+          const uploadRes = await fetch(`${process.env.REACT_APP_API_URL}/upload-multiple`, {
             method: 'POST',
             body: fileData,
           });
@@ -176,7 +176,7 @@ export default function App() {
         delete dataToSend.report_files;
         dataToSend.report_files = uploadedFiles;
     
-        const response = await fetch('${process.env.REACT_APP_API_URL}/submit', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/submit`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dataToSend),
@@ -217,12 +217,15 @@ export default function App() {
 
         let errorMessage = "An error occurred during submission.";
       
-        // If it's a fetch error with a response (e.g., 500 from backend)
-      if (err.response) {
+        if (err.response) {
           errorMessage = `Server error: ${err.response.status} - ${err.response.statusText}`;
+        } else if (err instanceof SyntaxError) {
+          errorMessage = "Received invalid JSON response from server.";
         } else if (err.message) {
-          // For most fetch errors (like network issues)
           errorMessage = `Error: ${err.message}`;
+        }
+      
+        alert(errorMessage);
         }
       
         alert(errorMessage);
