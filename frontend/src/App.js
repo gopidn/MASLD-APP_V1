@@ -227,9 +227,8 @@ export default function App() {
       
         alert(errorMessage);
         }
-      
-        alert(errorMessage);
-      } finally {
+
+       finally {
         setIsSubmitting(false);
       }
     };    
