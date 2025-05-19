@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const pool = require("./db");
+require("dotenv").config();
 
 const app = express();
 const PORT = 5050;
@@ -29,8 +30,15 @@ function sanitisePatient(data) {
   return clean;
 }
 
-app.use(cors());
+const allowedOrigin = process.env.ALLOWED_ORIGIN || "*";
+
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true,
+}));
+
 app.use(express.json());
+
 
 app.post("/submit", async (req, res) => {
   try {
@@ -82,9 +90,17 @@ app.listen(PORT, () => {
 const { Storage } = require("@google-cloud/storage");
 const path = require("path");
 
-// Point to your downloaded service account key JSON
+/*const storage = new Storage({
+  keyFilename: path.join(__dirname, "gcs-key.json"), 
+});
+*/
+
 const storage = new Storage({
-  keyFilename: path.join(__dirname, "gcs-key.json"), // replace with your actual filename
+  projectId: process.env.GCP_PROJECT_ID,
+  credentials: {
+    client_email: process.env.GCP_CLIENT_EMAIL,
+    private_key: process.env.GCP_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  },
 });
 
 const bucketName = "masld-reports";
