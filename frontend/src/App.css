@@ -1,16 +1,14 @@
 @media (max-width: 640px) {
   .grid-two {
-    grid-template-columns: 1fr;     /* single column */
+    grid-template-columns: 1fr;
   }
 }
 
-/* --- simple layout helpers ---------------------------------- */
-
-.grid-two {                     /* ➊ NEW */
-  display: grid;                /*   two-column layout            */
+.grid-two {                    
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 32px;   /* horizontal space between columns */
-  row-gap: 20px;      /* vertical space between rows */
+  column-gap: 32px;
+  row-gap: 20px;
   }
 
 .form-section   { 
@@ -48,9 +46,8 @@
   padding: 6px 8px; 
 }
 
-/* App.css – add near top */
 :root {
-  --brand: #0c7bcf;         /* deep medical blue */
+  --brand: #0c7bcf;
   --brand-light: #e6f4ff;
   --danger: #d0384a;
   --text: #333;
@@ -89,22 +86,15 @@ label.required::after {
   cursor: help; 
 }
 
-/*
-.help-icon:hover {
-  font-weight: 600;
-  color: #0057a7; 
-}
-*/
-
 .custom-tooltip {
   position: absolute;
   left: 120%;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1000;
-  background: #0c7bcf;         /* Deep blue or any color you want */
-  color: #fff;                 /* White text */
-  font-size: 0.75rem;          /* Larger font */
+  background: #0c7bcf;
+  color: #fff;
+  font-size: 0.75rem;
   padding: 8px 16px;
   border-radius: 8px;
   white-space: nowrap;

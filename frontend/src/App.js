@@ -14,7 +14,7 @@ function Tooltip({ text, children }) {
       onMouseLeave={() => setVisible(false)}
       onFocus={() => setVisible(true)}
       onBlur={() => setVisible(false)}
-      tabIndex={0} // for accessibility
+      tabIndex={0} 
     >
       {children}
       {visible && (
@@ -43,7 +43,7 @@ export default function App() {
       name:"",
       mobile:"",
       date_of_birth:"",
-      age: "",// calculated automatically
+      age: "",
       sex: "",
       state:"",
       height_cm: "",
@@ -61,7 +61,6 @@ export default function App() {
       fibroscan_kpa: "",
       biopsy_result: "",
       diagnosis_group: "",
-//      file_url: null,
       report_files: [],
     });
 
@@ -92,7 +91,6 @@ export default function App() {
           if (!data.height_cm) return "Height is required.";
           if (!data.weight_kg) return "Weight is required.";
           if (!data.waist_circumference) return "Waist Circumference is required.";
-          // New validation: DOB must not be in the future
           const dobDate = new Date(data.date_of_birth);
           const today = new Date();
           dobDate.setHours(0,0,0,0); // Remove time part for accurate comparison
@@ -340,7 +338,7 @@ export default function App() {
           </div>
           
           <div>
-          <label>Mobile Number:</label>
+          <label className="required">Mobile Number:</label>
             <input
               type="tel"
               name="mobile"
@@ -348,6 +346,7 @@ export default function App() {
               pattern="[0-9]{10}"
               onChange={handleChange}
               inputMode="numeric"
+              required
             />
           </div>
           
