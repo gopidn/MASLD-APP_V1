@@ -156,7 +156,7 @@ export default function App() {
           });
           fileData.append("types", JSON.stringify(types));
     
-          const uploadRes = await fetch('http://localhost:5050/upload-multiple', {
+          const uploadRes = await fetch('${process.env.REACT_APP_API_URL}/upload-multiple', {
             method: 'POST',
             body: fileData,
           });
@@ -176,7 +176,7 @@ export default function App() {
         delete dataToSend.report_files;
         dataToSend.report_files = uploadedFiles;
     
-        const response = await fetch("http://localhost:5050/submit", {
+        const response = await fetch('${process.env.REACT_APP_API_URL}/submit', {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dataToSend),
@@ -214,7 +214,18 @@ export default function App() {
         }
       } catch (err) {
         console.error("Submit error:", err);
-        alert("An error occurred during submission.");
+
+        let errorMessage = "An error occurred during submission.";
+      
+        // If it's a fetch error with a response (e.g., 500 from backend)
+      if (err.response) {
+          errorMessage = `Server error: ${err.response.status} - ${err.response.statusText}`;
+        } else if (err.message) {
+          // For most fetch errors (like network issues)
+          errorMessage = `Error: ${err.message}`;
+        }
+      
+        alert(errorMessage);
       } finally {
         setIsSubmitting(false);
       }
@@ -312,6 +323,18 @@ export default function App() {
             </div>
           </React.Fragment>
         ))}
+          <button className="secondary" 
+            type="button"
+            
+            onClick={() =>
+              setFormData(prev => ({
+                ...prev,
+                report_files: [...prev.report_files, { file: null, type: "" }],
+              }))
+            }
+          >
+            Fill form from report
+          </button>
       </FormSection>
 
           <FormSection title="Personal Details">
